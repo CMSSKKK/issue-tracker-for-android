@@ -9,9 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 @Configuration
 @EnableConfigurationProperties(S3Properties.class)
+@PropertySource("classpath:s3.yml")
 @RequiredArgsConstructor
 public class S3Config {
     /*
