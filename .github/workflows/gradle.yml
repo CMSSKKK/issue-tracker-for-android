@@ -38,9 +38,6 @@ jobs:
         echo "${{ secrets.PROD }}" >> ./application-prod.yml
         cat /dev/null > ./auth.yml
         echo "${{ secrets.AUTH }}" >> ./auth.yml
-        cat /dev/null > ./s3.yml
-        echo "${{ secrets.S3 }}" >> ./s3.yml
-      
         
     - name: Build with Gradle
       run: ./gradlew bootJar
@@ -64,3 +61,4 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         script: |
           docker pull cmsskkk/issue-android:latest
+          docker run -d --name tracker cmsskkk/issue-android:latest 
