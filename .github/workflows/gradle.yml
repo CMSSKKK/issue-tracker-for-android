@@ -32,15 +32,15 @@ jobs:
       working-directory: ./BE
       
     - name: switch env file
+      working-directory: ./BE/src/main/resources
       run: |
-        cd ./src/main/resources
         cat /dev/null ./application-prod.yml
         echo "${{ secrets.PROD }}" >> ./application-prod.yml
         cat /dev/null ./auth.yml
         echo "${{ secrets.AUTH }}" >> ./auth.yml
         cat /dev/null ./s3.yml
         echo "${{ secrets.S3 }}" >> ./s3.yml
-      working-directory: ./BE
+      
         
     - name: Build with Gradle
       run: ./gradlew bootJar
