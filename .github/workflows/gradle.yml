@@ -61,4 +61,4 @@ jobs:
         key: ${{ secrets.PRIVATE_KEY }}
         script: |
           docker pull cmsskkk/issue-android:latest
-          docker run -d --name tracker cmsskkk/issue-android:latest 
+          docker run -d --rm --name tracker -p 8080:8080 cmsskkk/issue-android:latest 
