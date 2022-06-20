@@ -35,11 +35,11 @@ jobs:
       run: |
         cd ./src/main/resources
         cat /dev/null ./application-prod.yml
-        echo "${{ secrets.prod }}" >> ./application-prod.yml
+        echo "${{ secrets.PROD }}" >> ./application-prod.yml
         cat /dev/null ./auth.yml
-        echo "${{ secrets.auth }}" >> ./auth.yml
+        echo "${{ secrets.AUTH }}" >> ./auth.yml
         cat /dev/null ./s3.yml
-        echo "${{ secrets.s3 }}" >> ./s3.yml
+        echo "${{ secrets.S3 }}" >> ./s3.yml
         
     - name: Build with Gradle
       run: ./gradlew bootJar
@@ -51,7 +51,15 @@ jobs:
         image: cmsskkk/issue-android
         tags: v1, latest
         registry: docker.io
-        dockerfile: ./backend/Dockerfile
+        dockerfile: ./BE/Dockerfile
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
+    
+    - name: deploy-be 
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ubuntu
+        key: ${{ secrets.PRIVATE_KEY }}
+        script: |
+          docker pull cmsskkk/issue-android:latest
