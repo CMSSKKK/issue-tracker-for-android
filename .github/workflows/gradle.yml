@@ -40,6 +40,7 @@ jobs:
         echo "${{ secrets.AUTH }}" >> ./auth.yml
         cat /dev/null ./s3.yml
         echo "${{ secrets.S3 }}" >> ./s3.yml
+      working-directory: ./BE
         
     - name: Build with Gradle
       run: ./gradlew bootJar
