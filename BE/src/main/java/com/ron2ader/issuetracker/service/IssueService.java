@@ -32,8 +32,8 @@ public class IssueService {
 
         Member member = memberRepository.findByMemberId(issuerId).orElseThrow(NoSuchElementException::new);
         Issue savedIssue = issueRepository.save(Issue.of(member, title, contents, null, null, null, null));
-
-        return new IssueDetailResponse(MemberDto.from(member), IssueDetail.from(savedIssue));
+        return null;
+        //return new IssueDetailResponse(MemberDto.from(member), IssueDetail.from(savedIssue));
     }
 
     // 상세 정보
@@ -41,13 +41,14 @@ public class IssueService {
     public IssueDetailResponse findById(Long issueNumber) {
         Issue targetIssue = issueRepository.findById(issueNumber)
                 .orElseThrow(() -> new NoSuchElementException("해당하는 이슈가 없습니다."));
-
-        return new IssueDetailResponse(MemberDto.from(targetIssue.getIssuer()), IssueDetail.from(targetIssue));
+        return null;
+        //return new IssueDetailResponse(MemberDto.from(targetIssue.getIssuer()), IssueDetail.from(targetIssue));
     }
 
     @Transactional(readOnly = true)
     public Page<IssueSimpleResponse> findByCondition(Pageable pageable, Boolean openStatus) {
         Page<Issue> issues = issueRepository.findByCondition(pageable, IssueCondition.of(openStatus, null, null, null));
-        return issues.map(IssueSimpleResponse::from);
+        return null;
+        //return issues.map(IssueSimpleResponse::from);
     }
 }

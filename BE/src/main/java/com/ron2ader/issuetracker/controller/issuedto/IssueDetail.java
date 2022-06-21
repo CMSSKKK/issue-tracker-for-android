@@ -1,7 +1,9 @@
 package com.ron2ader.issuetracker.controller.issuedto;
 
+import com.ron2ader.issuetracker.controller.memberdto.MemberDto;
 import com.ron2ader.issuetracker.domain.issue.Issue;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +20,10 @@ public class IssueDetail {
 
     public static IssueDetail from(Issue issue) {
         return new IssueDetail(issue.getId(), issue.getTitle(), issue.getContents(), issue.getOpenStatus(), issue.getCreatedAt());
+    }
+
+    public static IssueDetail mockIssueDetail() {
+        return new IssueDetail(1L, "mock issue", "mock issue contents", true, LocalDateTime.now());
     }
 
     @Override

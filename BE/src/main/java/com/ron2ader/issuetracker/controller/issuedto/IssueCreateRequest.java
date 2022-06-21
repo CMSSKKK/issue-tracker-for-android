@@ -10,5 +10,4 @@ public class IssueCreateRequest {
 
     private String title;
     private String contents;
-    private MultipartFile attachmentFile;
 }
